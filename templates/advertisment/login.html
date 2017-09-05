@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block body %}  <!-- part 10 -->
+<div class="container">
+  <div class="jumbotron">
+	<h1>Welcome</h1>
+	<p>
+		You can log in here!
+	</p>
+  </div>
+  <div class="col-md-8">
+	<h2>Login</h2>
+	<form method="post">
+		{% csrf_token %}
+		<div class="form-group">
+		{{form|bootstrap}}
+		<button class="btn btn-primary" type="submit">Login</button>
+		</div>
+	</form>
+  </div>
+</div>
+
+
+{% endblock %}  <!-- part 10 -->
+

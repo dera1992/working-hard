@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block body %}
+   <div class="container">
+      <div class="col-md-8">
+         <h2>Home</h2>
+        
+         <h3> Search </h3>
+         {% csrf_token %}
+            <input type = 'text' id = 'search' name = 'search' />
+
+         <ul id = 'search-results'>
+
+         </ul>
+
+
+         <form method="post">
+             {% csrf_token %}
+             {{form|bootstrap}}
+             <br>
+               <button type="submit">Submit</button>
+         </form>
+
+
+       <div class="row">
+           <div class="col-lg-4 col-md-6 col-mb-4">
+             <h2>Articles</h2>
+             {% for article in articles %}
+                 <h1><a href="{% url 'news:view_article' article.id %}">{{article.headline}}</a></h1>
+                 <p>{{article.content|lower|truncatewords:"10"}}</p>
+                 <p>Post by {{article.user}} on {{article.pub_date}}</p>
+                 <p>{{article.likes}} likes</p>
+             {% endfor %}
+          </div>
+      
+            <div class="col-lg-4 col-md-6 mb-4">
+              <h2>{{text}}</h2>
+                {% for post in posts %}
+                  <h1>{{post.post}}</h1>
+                  <p>Post by {{post.user}} on {{post.created}}
+                  <a href="{% url 'home:delete_comment' article.id %}">Deleted</a></p>
+                {% endfor %}
+             </div>
+        </div>
+
+      </div> 
+
+      <div class="col-md-4"> <!-- part52 -->
+         <h2>Other People</h2>
+         {% for user in users %}
+             <a href="{% url 'advertisment:view_profile_with_pk' pk=user.pk %}">
+                <h3>{{user.username}}</h3>
+             </a>     
+         {% endfor %}
+      </div>
+   </div>
+{% endblock %}

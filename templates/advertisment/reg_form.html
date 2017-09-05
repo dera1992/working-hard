@@ -1,0 +1,38 @@
+{% extends 'base.html' %} <!-- part15 -->
+{% load crispy_forms_tags %}
+{% load bootstrap3 %}
+
+
+{% block body %}
+
+<div class="container">
+<h1>Register</h1>
+	<form method="post">
+		{% csrf_token %}
+		<div class="row">
+            <div class="col-sm-6">
+                {% bootstrap_field form.username %}
+            </div>
+
+		</div>
+        <div class="row">
+			{% bootstrap_field form.first_name %}
+		</div>
+        <div class="row">
+			{% bootstrap_field form.last_name %}
+		</div>
+        <div class="row">
+			{% bootstrap_field form.email %}
+		</div>
+        <div class="row">
+			{% bootstrap_field form.password1 %}
+		</div>
+        <div class="row">
+			{% bootstrap_field form.password2 %}
+		</div>
+		<button class="btn btn-primary" type="submit">Login</button>
+	</form>
+</div>
+
+{% endblock %} <!-- part15 -->
+

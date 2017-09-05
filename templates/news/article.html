@@ -1,0 +1,13 @@
+{% extends 'base.html' %} 
+
+{% block body %}
+<div class="container">
+    <h1>{{article.headline}}</h1>
+    {{article.content}}
+    <p>Post by {{article.user.get_full_name}} on {{article.pub_date}}</p>
+    <p>{{article.likes}} likes</p>
+    <p><a href="{% url 'news:like' article.id %}">Likes</a></p>
+    <br>
+</div>
+ 
+{% endblock %}
